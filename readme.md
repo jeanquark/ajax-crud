@@ -7,12 +7,12 @@ Inspired by [this tutorial](http://www.hc-kr.com/2016/10/laravel-5-crud-using-aj
 
 Clone the repo
 ```
-git clone https://github.com/jeanquark/ajax_crud.git
+git clone https://github.com/jeanquark/ajax-crud.git
 ```
 
 Move to the newly created folder and install all dependencies:
 ```
-cd ajax_crud
+cd ajax-crud
 composer install
 ```
 
