@@ -82,7 +82,7 @@
                     <table class="table table-striped table-bordered table-hover" id="postTable" style="visibility: hidden;">
                         <thead>
                             <tr>
-                                <th valign="middle">ID</th>
+                                <th valign="middle">#</th>
                                 <th>Title</th>
                                 <th>Content</th>
                                 <th>Published?</th>
@@ -92,9 +92,9 @@
                             {{ csrf_field() }}
                         </thead>
                         <tbody>
-                            @foreach($posts as $post)
+                            @foreach($posts as $indexKey => $post)
                                 <tr class="item{{$post->id}} @if($post->is_published) warning @endif">
-                                    <td>{{$post->id}}</td>
+                                    <td class="col1">{{ $indexKey+1 }}</td>
                                     <td>{{$post->title}}</td>
                                     <td>
                                         {{App\Post::getExcerpt($post->content)}}
@@ -363,7 +363,7 @@
                         }
                     } else {
                         toastr.success('Successfully added Post!', 'Success Alert', {timeOut: 5000});
-                        $('#postTable').append("<tr class='item" + data.id + "'><td>" + data.id + "</td><td>" + data.title + "</td><td>" + data.content + "</td><td class='text-center'><input type='checkbox' class='new_published' data-id='" + data.id + " '></td><td>Right now</td><td><button class='show-modal btn btn-success' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal btn btn-info' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                        $('#postTable').append("<tr class='item" + data.id + "'><td class='col1'>" + data.id + "</td><td>" + data.title + "</td><td>" + data.content + "</td><td class='text-center'><input type='checkbox' class='new_published' data-id='" + data.id + " '></td><td>Right now</td><td><button class='show-modal btn btn-success' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal btn btn-info' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
                         $('.new_published').iCheck({
                             checkboxClass: 'icheckbox_square-yellow',
                             radioClass: 'iradio_square-yellow',
@@ -385,6 +385,9 @@
                                     // empty
                                 },
                             });
+                        });
+                        $('.col1').each(function (index) {
+                            $(this).html(index+1);
                         });
                     }
                 },
@@ -440,7 +443,7 @@
                         }
                     } else {
                         toastr.success('Successfully updated Post!', 'Success Alert', {timeOut: 5000});
-                        $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.id + "</td><td>" + data.title + "</td><td>" + data.content + "</td><td class='text-center'><input type='checkbox' class='edit_published' data-id='" + data.id + "'></td><td>Right now</td><td><button class='show-modal btn btn-success' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal btn btn-info' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                        $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td class='col1'>" + data.id + "</td><td>" + data.title + "</td><td>" + data.content + "</td><td class='text-center'><input type='checkbox' class='edit_published' data-id='" + data.id + "'></td><td>Right now</td><td><button class='show-modal btn btn-success' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal btn btn-info' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
 
                         if (data.is_published) {
                             $('.edit_published').prop('checked', true);
@@ -468,6 +471,9 @@
                                 },
                             });
                         });
+                        $('.col1').each(function (index) {
+                            $(this).html(index+1);
+                        });
                     }
                 }
             });
@@ -491,6 +497,9 @@
                 success: function(data) {
                     toastr.success('Successfully deleted Post!', 'Success Alert', {timeOut: 5000});
                     $('.item' + data['id']).remove();
+                    $('.col1').each(function (index) {
+                        $(this).html(index+1);
+                    });
                 }
             });
         });
