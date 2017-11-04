@@ -1,7 +1,6 @@
 # AJAX CRUD for Laravel 5.4
 
-Asynchronous actions on a Laravel resource controller. For step by step instructions, visit my [blog post](http://www.jmkleger.com/post/ajax-crud-for-laravel-5-4).  
-Inspired by [this tutorial](http://www.hc-kr.com/2016/10/laravel-5-crud-using-ajax-modals.html).
+Asynchronous actions on a Laravel resource controller. For step by step instructions, visit my [blog post](http://www.jmkleger.com/post/ajax-crud-for-laravel-5-4).
 
 ## Installation
 
