@@ -331,6 +331,10 @@
     <script type="text/javascript">
         // add a new post
         $(document).on('click', '.add-modal', function() {
+            // Empty input fields
+            $('#title_add').val('');
+            $('#content_add').val('');
+
             $('.modal-title').text('Add');
             $('#addModal').modal('show');
         });
